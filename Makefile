@@ -199,3 +199,7 @@ docker-clean-image:
 	-$(DOCKER) rmi ${DOCKER_IMAGE_NAME}:${DOCKER_TAG_NAME}
 
 docker-clean: docker-clean-container docker-clean-image
+
+test: test-unit
+test-unit:
+	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock' $(TEST_TARGET) $(TEST_ARGS)
